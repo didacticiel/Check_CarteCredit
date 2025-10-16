@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Vérification de carte</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg">
+    <h1 class="text-2xl font-bold text-gray-800 mb-2 text-center">Vérification de numéro de carte</h1>
+    <p class="text-gray-600 text-center mb-4">Entrez le numéro de la carte (sans espaces ni tirets)</p>
+
+    <form method="post" novalidate class="space-y-4">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div>
+        {{ form.number.label_tag }}
+        {{ form.number }}
+        {% for e in form.number.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ e }}</p>
+        {% endfor %}
+      </div>
+      <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition" type="submit">
+        Vérifier
+      </button>
+    </form>
+
+    {% if result is not None %}
+      <div class="mt-6">
+        <h4 class="font-semibold text-gray-800 mb-2">Résultat :</h4>
+        {% if result == "VALID" %}
+          <div class="bg-green-100 text-green-800 p-3 rounded-lg">
+            ✅ Numéro <strong>VALIDE</strong> — Type: <strong>{{ card_type }}</strong>
+          </div>
+        {% else %}
+          <div class="bg-red-100 text-red-800 p-3 rounded-lg">
+            ❌ Numéro invalide
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

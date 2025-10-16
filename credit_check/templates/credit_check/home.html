@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Vérification de carte</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1>Vérification de numéro de carte</h1>
+    <p>Entrez le numéro de la carte<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Vérification de carte</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1>Vérification de numéro de carte</h1>
+    <p>Entrez le numéro de la carte (sans espaces ni tirets)</p>
+
+    <div class="card p-4">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+          {{ form.number.label_tag }}
+          {{ form.number }}
+          {% for e in form.number.errors %}
+            <div class="text-danger small">{{ e }}</div>
+          {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit">Vérifier</button>
+      </form>
+    </div>
+
+    {% if result is not None %}
+      <div class="mt-4">
+        <h4>Résultat :</h4>
+        {% if result == "VALID" %}
+          <div class="alert alert-success">
+            Numéro VALIDE — Type: <strong>{{ card_type }}</strong>
+          </div>
+        {% else %}
+          <div class="alert alert-danger">Numéro invalide</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+ (sans espaces ni tirets)</p>
+
+    <div class="card p-4">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+          {{ form.number.label_tag }}
+          {{ form.number }}
+          {% for e in form.number.errors %}
+            <div class="text-danger small">{{ e }}</div>
+          {% endfor %}
+        </div>
+        <button class="btn btn-primary" type="submit">Vérifier</button>
+      </form>
+    </div>
+
+    {% if result is not None %}
+      <div class="mt-4">
+        <h4>Résultat :</h4>
+        {% if result == "VALID" %}
+          <div class="alert alert-success">
+            Numéro VALIDE — Type: <strong>{{ card_type }}</strong>
+          </div>
+        {% else %}
+          <div class="alert alert-danger">Numéro invalide</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
